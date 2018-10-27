@@ -154,7 +154,7 @@
                          <?while($row = mysql_fetch_array($meal_count_distribution_sql,MYSQL_NUM)){?>
                           <tr>
                             <td>
-                              <p><i class="fa fa-square <?switch($row[0]){case 1: echo "gray"; break;case 2: echo "purple";break;case 3: echo "red"; break; }?>"></i>Consume <?=$row[0]?> Meal(s)</p>
+                              <p><i class="fa fa-square <?switch($row[0]){case 1: echo "gray"; break;case 2: echo "purple";break;case 3: echo "red"; break; }?>"></i>Con. <?=$row[0]?> Me.(s)</p>
                             </td>
                             <td><?=$row[1]?></td>
                           </tr>
