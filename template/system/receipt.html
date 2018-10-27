@@ -1,0 +1,180 @@
+﻿
+<?switch($_GET['action']){?>
+<?case "add":?>
+
+<TABLE width="780" border=0 align="center" cellPadding=0 cellSpacing=0  class="text">
+  <tr class="header1">
+    <td width="22" align="right"><img src="images/menu/outbox.gif" width="19" height="17"></td>
+    <td width="139" height="20" > 收據單管理[<font color=#0000FF>添加收據單</font>] </td>
+    <td width=423 align=right><a href=<?= $_SERVER['HTTP_REFERER']?>>返回列表</a></td>
+  </tr>
+</table>
+</td>
+</TR>
+</TABLE>
+<br>
+<form name="frm_c5acd3847d" id="frm_c5acd3847d" method="POST" enctype="multipart/form-data" action="main.php?page=receipt&action=add">
+<table id="pg_975c4963ca" border="0" cellpadding="2" cellspacing="1" width="780" bgcolor="#757575"  style="display:;border: solid 1px #777777;">
+  <tr>
+    <td width="30%" align="left" bgcolor="#C4E1FF" valign="top"><span style="">日期</span> <font color='red'>*
+      </color></td>
+    <td width="70%" align="left" bgcolor="#FFFFFF"><input name="date" id="s_date" type="textfield"></td>
+  </tr>
+  <tr>
+    <td width="30%" align="left" bgcolor="#C4E1FF" valign="top"><span style="">報價單編號</span> <font color='red'>*
+      </color></td>
+    <td width="70%" align="left" bgcolor="#FFFFFF"><input name="quotation" type="textfield"></td>
+  </tr>
+  <tr>
+    <td width="30%" align="left" bgcolor="#C4E1FF" valign="top"><span style="">公司類別</span> <font color='red'>*
+      </color></td>
+    <td width="70%" align="left" bgcolor="#FFFFFF"><select name="from_company" id="fld_f10b0c948e" style="width:100%;" >
+        <option></option>
+        <?while($row=mysql_fetch_array($type,MYSQL_ASSOC)){?>
+        <option value="<?=$row['id']?>">
+        <?=$row['name']?>
+        </option>
+        <?}?>
+      </select></td>
+  </tr>
+  <tr> 
+    <!-- Buttons -->
+    <td colspan="2" align="center" class="phpForms_main" bgcolor="#FFFFFF"><input type="submit" value="Submit" name="Submit" style="width:30%; background-color : #a2a2a2" class="phpForms_btn"></td>
+  </tr>
+</table>
+<?break;?>
+<?case "edit":?>
+<TABLE width="780" border=0 align="center" cellPadding=0 cellSpacing=0  class="text">
+  <tr class="header1">
+    <td width="22" align="right"><img src="images/menu/outbox.gif" width="19" height="17"></td>
+    <td width="139" height="20" > 報價單管理[<font color=#0000FF>編輯報價單</font>] </td>
+    <td width=423 align=right><a href=<?= $_SERVER['HTTP_REFERER']?>>返回列表</a></td>
+  </tr>
+</table>
+</td>
+</TR>
+</TABLE>
+<br>
+<form name="frm_c5acd3847d" id="frm_c5acd3847d" method="POST" enctype="multipart/form-data" action="main.php?page=receipt&action=edit&qid=<?=$_GET['qid']?>">
+<table id="pg_975c4963ca" border="0" cellpadding="2" cellspacing="1" width="780" bgcolor="#757575"  style="display:;border: solid 1px #777777;">
+  <tr>
+    <td width="30%" align="left" bgcolor="#C4E1FF" valign="top"><span style="">日期</span> <font color='red'>*
+      </color></td>
+    <td width="70%" align="left" bgcolor="#FFFFFF"><input name="date" type="textfield" value="<?=$row[0]?>"></td>
+  </tr>
+  <tr>
+    <td width="30%" align="left" bgcolor="#C4E1FF" valign="top"><span style="">客戶</span> <font color='red'>*
+      </color></td>
+    <td width="70%" align="left" bgcolor="#FFFFFF"><input name="customer" type="textfield" id="name" value="<?=$row[1]?>"></td>
+  </tr>
+  <tr>
+    <td width="30%" align="left" bgcolor="#C4E1FF" valign="top"><span style="">公司類別</span> <font color='red'>*
+      </color></td>
+    <td width="70%" align="left" bgcolor="#FFFFFF"><select name="from_company" id="fld_f10b0c948e" style="width:100%;">
+        <?while($pb=mysql_fetch_array($type,MYSQL_ASSOC)){?>
+        <option value="<?=$pb['id']?>" <?=($pb['id']==$row[2]?"selected":"")?> >
+        <?=$pb['name']?>
+        </option>
+        <?}?>
+      </select></td>
+  </tr>
+  <tr> 
+    <!-- Buttons -->
+    <td colspan="2" align="center" class="phpForms_main" bgcolor="#FFFFFF"><input type="submit" value="Submit" name="Submit" style="width:30%; background-color : #a2a2a2" class="phpForms_btn"></td>
+  </tr>
+</table>
+<?break;?>
+<?case "item":?>
+<?include( dirname(__FILE__).'/formTemplate/receipt/index.html');?>
+<?break;?>
+<?default:?>
+<form action="./main.php?page=receipt" method="get" >
+  <table width="820" border="0"  cellpadding="0" cellspacing="0" class="text">
+    <input name="page" value="quotation" type="hidden">
+    <tr>
+      <td width="60">客戶名稱:</td>
+      <td width="100"><input name="name" type="textfield" id="name"></td>
+      <td width="30">收據單號:</td>
+      <td width="40"><input type="text" name="qid"  size="15"></td>
+    </tr>
+    <tr>
+      <td width="30">公司類別 :</td>
+      <td width="270">&nbsp;
+        <select name="from_company" id="fld_f10b0c948e" style="width:70;">
+          <option value=''>ALL</option>
+          <?while($row=mysql_fetch_array($type,MYSQL_ASSOC)){?>
+          <option value="<?=$row['id']?>">
+          <?=$row['name']?>
+          </option>
+          <?}?>
+        </select></td>
+      <td width="30">&nbsp;</td>
+      <td width="70">&nbsp;</td>
+      <td width="30">&nbsp;</td>
+      <td width="70">&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="30">開始日期:</td>
+      <td width="70"><input type="text" name="s_date" size="15" id="s_date"></td>
+      <td width="30">結束日期:</td>
+      <td width="70"><input type="text" name="e_date" size="15" id="e_date"></td>
+    </tr>
+    <tr>
+      <td width="61"></td>
+      <td colspan="3"><input type="submit" name="Search" value="Search">
+        <input type="reset" name="Reset" value="Reset"></td>
+    </tr>
+  </table>
+</form>
+<br>
+<table border="0" bgColor="#808080" cellPadding="4" cellSpacing="1" width="960" class="text">
+  <tr class="header">
+    <td width="70%" > | <a href="./main.php?page=receipt&action=add"><font color="#FFFFFF">新增收據單</font></a></td>
+    <td width="30%"> 共
+      <?=intval($total/30)+1?>
+      頁
+      <?=$total?>
+      條客戶 現在是第
+      <?=$num?>
+      頁 </td>
+  </tr>
+</table>
+<table border="0" bgColor="#808080" cellPadding="4" cellSpacing="1" width="1000"  id="myTable" class="tablesorter">
+  <!-- Form list header -->
+  <thead>
+    <tr>
+      <th  width="10%" align="center"> <span >公司類別</span> </th>
+      <th  width="5%" align="center"> <span >Receipt No.</span> </th>
+      <th  width="25%" align="center"> <span >客戶名稱</span> </th>
+      <th  width="10%" align="center"> <span >日期</span> </th>
+      <th  width="15%" align="center"> <span >操作</span> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <?while($row=mysql_fetch_array($db,MYSQL_NUM)){?>
+    <tr align="center">
+      <td ><?=$row[4]?></td>
+      <td ><?=$row[5]?>
+        <?=$row[6]?></td>
+      <td ><?=$row[3]?></td>
+      <td ><?=$row[1]?></td>
+      <td ><a href="main.php?page=<?=$_GET['page']?>&action=edit&qid=<?=$row[0]?>">編輯</a> | <a href="main.php?page=<?=$_GET['page']?>&action=item&qid=<?=$row[0]?>">項目</a> | <a href="main.php?page=<?=$_GET['page']?>&action=delete&qid=<?=$row[0]?>">刪除</a></td>
+    </tr>
+    <?}?>
+  </tbody>
+  <tr class="summary">
+    <td  colspan=4 width="15%" align="right"><span ><b> </b></span></td>
+    <td width="15%" align="right"><span ><font size="5"><b>
+      <?=$sum?>
+      </b></font></span></td>
+  </tr>
+  <!-- /Form list -->
+</table>
+<table width="780">
+  <tr align="right">
+    <td><?=($num<=1?"":"<a href=\"./main.php?page=receipt&name=".$_GET['name']."&qid=".$_GET['rid']."&from_company=".$_GET['from_company']."&s_date=".$_GET['s_date']."&e_date=".$_GET['e_date']."&Search=".$_GET['Search']."&num=".($num-1)."\">上一頁</a>")?>
+      <?=($num+1>(intval($total/30)+1)?"":"<a href=\"./main.php?page=income&name=".$_GET['name']."&id=".$_GET['id']."&type=".$_GET['type']."&from_company=".$_GET['from_company']."&paid=".$_GET['paid']."&s_date=".$_GET['s_date']."&e_date=".$_GET['e_date']."&Search=".$_GET['Search']."&num=".($num+1)."\">下一頁</a>")?></td>
+  </tr>
+</table>
+<?break;
+}?>
