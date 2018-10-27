@@ -94,6 +94,25 @@
 			$db = mysql_query("DELETE from `user` where id='$id'");
 			echo "<script>history.go(-1);</script>";
 		break;
+        case 'test':
+            /*$get_meal_ppl_sql = mysql_query("SELECT hashID,  `consumeTime`
+                        FROM  `meal`
+                        GROUP BY DAY(  `consumeTime` ) , hashID");
+            
+            while($row = mysql_fetch_array($get_meal_ppl_sql,MYSQL_NUM))
+            {
+                                            $get_access_data = mysql_query("SELECT *
+                                                                           FROM  `checkinout`
+                                                                           WHERE doorID LIKE  \"% out\"
+                                                                           AND grantResult =  'G'
+                                                                           AND accessDate >= ADDTIME(  \"$row[1]\", 45 *60 )
+                                                                           AND accessDate <= ADDTIME(  \"$row[1]\", 90 *60 )
+                                                                           ORDER BY RAND( ) 
+                                                                           LIMIT 0 , 1");
+                  $get_target_id =mysql_fetch_array($get_access_data,MYSQL_NUM);
+                                                                                                     mysql_query("UPDATE `checkinout` set `hashID`='$row[0]' where id=$get_target_id[0]");
+            }*/
+        break;
 		default:
 			 $meal_count_dinner_sql = mysql_query("SELECT count(*) from `meal` where `consumptionLocation` = 'CKYC' and `mealType` = 'DINNER'");
 			 $meal_count_dinner_row = mysql_fetch_array($meal_count_dinner_sql,MYSQL_NUM);
@@ -103,7 +122,14 @@
 			 $meal_count_breakfast_row = mysql_fetch_array($meal_count_breakfast_sql,MYSQL_NUM);
 			 $meal_count_nr_sql = mysql_query("SELECT count(*) from `meal` where `rcMember` != `consumptionLocation`");
 			 $meal_count_nr_row = mysql_fetch_array($meal_count_nr_sql,MYSQL_NUM);
-			
+            
+            $meal_arrive_map_sql = mysql_query("select  avg(diff),mealType,YEAR(`consumeTime`),MONTH(`consumeTime`),DAY(`consumeTime`) from (
+                                               SELECT  meal.*,checkinout.accessDate - meal.consumeTime as diff
+                                               FROM  `meal` ,  `checkinout`
+                                               WHERE meal.hashID = checkinout.hashID
+                                               ) A where A.diff <= 5400 and mealType=\"BREAKFAST\" GROUP BY DAY(A.consumeTime), A.mealType");
+            
+				
 			 $meal_count_breakdown_sql = mysql_query("SELECT count(*),YEAR(`consumeTime`),MONTH(`consumeTime`),DAY(`consumeTime`) from `meal` where `consumptionLocation` = 'CKYC' GROUP BY DAY(`consumeTime`)");
 			
 			  $meal_count_distribution_sql = mysql_query("SELECT noofmeal, COUNT( * ) 

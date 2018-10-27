@@ -47,46 +47,23 @@
                 </div>
                 <div class="col-md-3 col-sm-3 col-xs-12 bg-white">
                   <div class="x_title">
-                    <h2>Top Campaign Performance</h2>
+                    <h2></h2>
                     <div class="clearfix"></div>
                   </div>
 
                   <div class="col-md-12 col-sm-12 col-xs-6">
-                    <div>
-                      <p>Facebook Campaign</p>
-                      <div class="">
-                        <div class="progress progress_sm" style="width: 76%;">
-                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="80"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <p>Twitter Campaign</p>
-                      <div class="">
-                        <div class="progress progress_sm" style="width: 76%;">
-                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="60"></div>
-                        </div>
-                      </div>
-                    </div>
+                      <?
+                      //$meal_arrive_map_sql2 = $meal_arrive_map_sql;
+                      while($meal_map_out_row = mysql_fetch_array($meal_arrive_map_sql,MYSQL_NUM)){
+                      $average_time =$meal_map_out_row[0]/60;
+                      echo $meal_map_out_row[2].'-'.$meal_map_out_row[3].'-'.$meal_map_out_row[4]." Average Mins:".$average_time.'<br>';
+                      
+                      }
+                      mysql_data_seek($meal_arrive_map_sql, 0);
+                      ?>
                   </div>
                   <div class="col-md-12 col-sm-12 col-xs-6">
-                    <div>
-                      <p>Conventional Media</p>
-                      <div class="">
-                        <div class="progress progress_sm" style="width: 76%;">
-                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="40"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <p>Bill boards</p>
-                      <div class="">
-                        <div class="progress progress_sm" style="width: 76%;">
-                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                                      </div>
 
                 </div>
 
@@ -192,44 +169,7 @@
             </div>
 
 
-            <div class="col-md-4 col-sm-4 col-xs-12">
-              <div class="x_panel tile fixed_height_320">
-                <div class="x_title">
-                  <h2>Resident Meal Consumption >=1</h2>
-                  <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Settings 1</a>
-                        </li>
-                        <li><a href="#">Settings 2</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                  </ul>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                  <div class="dashboard-widget-content">
 
-
-
-                        <h4>Profile Completion</h4>
-                        <canvas width="150" height="80" id="chart_gauge_01" class="" style="width: 160px; height: 100px;"></canvas>
-                        <div class="goal-wrapper">
-                          <span id="gauge-text" class="gauge-value pull-left">0</span>
-                          <span class="gauge-value pull-left">%</span>
-                          <span id="goal-text" class="goal-value pull-right">100%</span>
-                        </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
 
           </div>
 
@@ -244,68 +184,12 @@
 
               <div class="row">
 
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                  <div class="x_panel">
-                    <div class="x_title">
-                      <h2>Visitors location <small>geo-presentation</small></h2>
-                      <ul class="nav navbar-right panel_toolbox">
-                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                        </li>
-                        <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                          <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Settings 1</a>
-                            </li>
-                            <li><a href="#">Settings 2</a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                        </li>
-                      </ul>
-                      <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                      <div class="dashboard-widget-content">
-                        <div class="col-md-4 hidden-small">
-                          <h2 class="line_30">125.7k Views from 60 countries</h2>
-
-                          <table class="countries_list">
-                            <tbody>
-                              <tr>
-                                <td>United States</td>
-                                <td class="fs15 fw700 text-right">33%</td>
-                              </tr>
-                              <tr>
-                                <td>France</td>
-                                <td class="fs15 fw700 text-right">27%</td>
-                              </tr>
-                              <tr>
-                                <td>Germany</td>
-                                <td class="fs15 fw700 text-right">16%</td>
-                              </tr>
-                              <tr>
-                                <td>Spain</td>
-                                <td class="fs15 fw700 text-right">11%</td>
-                              </tr>
-                              <tr>
-                                <td>Britain</td>
-                                <td class="fs15 fw700 text-right">10%</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                        <div id="world-map-gdp" class="col-md-8 col-sm-12 col-xs-12" style="height:230px;"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
 
               </div>
               <div class="row">
 
                 
-                <!-- start of weather widget -->
+                <!-- start of weather widget
                 <div class="col-md-6 col-sm-6 col-xs-12">
                   <div class="x_panel">
                     <div class="x_title">
@@ -411,7 +295,7 @@
                   </div>
 
                 </div>
-                <!-- end of weather widget -->
+                end of weather widget -->
               </div>
             </div>
           </div>
@@ -420,26 +304,65 @@
         
        
       <script>
+          
+          $(document).ready(function() {
 		  		var arr_data1 = [
-			[gd(2018, 10, 1), 17],
-			[gd(2018, 10, 2), 74],
-			[gd(2018, 10, 3), 6],
-			[gd(2018, 10, 4), 39],
-			[gd(2018, 10, 5), 20],
-			[gd(2018, 10, 6), 85],
-			[gd(2018, 10, 7), 7]
+                                 <?while($meal_map_out_row = mysql_fetch_array($meal_arrive_map_sql,MYSQL_NUM)){?>
+			[gd(<?=$meal_map_out_row[2]?>, <?=$meal_map_out_row[3]?>, <?=$meal_map_out_row[4]?>), <?=$meal_map_out_row[0]/60?>],
+                                 <?}?>
 		];
 
-		var arr_data2 = [
-		  [gd(2018, 10, 1), 82],
-		  [gd(2018, 10, 2), 23],
-		  [gd(2018, 10, 3), 66],
-		  [gd(2018, 10, 4), 9],
-		  [gd(2018, 10, 5), 119],
-		  [gd(2018, 10, 6), 6],
-		  [gd(2018, 10, 7), 9]
-		];
-		  
+          
+                            var chart_plot_01_settings = {
+                            series: {
+                            lines: {
+                            show: false,
+                            fill: true
+                            },
+                            splines: {
+                            show: true,
+                            tension: 0.4,
+                            lineWidth: 1,
+                            fill: 0.4
+                            },
+                            points: {
+                            radius: 0,
+                            show: true
+                            },
+                            shadowSize: 2
+                            },
+                            grid: {
+                            verticalLines: true,
+                            hoverable: true,
+                            clickable: true,
+                            tickColor: "#d5d5d5",
+                            borderWidth: 1,
+                            color: '#fff'
+                            },
+                            colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
+                            xaxis: {
+                            tickColor: "rgba(51, 51, 51, 0.06)",
+                            mode: "time",
+                            tickSize: [1, "day"],
+                            //tickLength: 10,
+                            axisLabel: "Date",
+                            axisLabelUseCanvas: true,
+                            axisLabelFontSizePixels: 12,
+                            axisLabelFontFamily: 'Verdana, Arial',
+                            axisLabelPadding: 10
+                            },
+                            yaxis: {
+                            ticks: 8,
+                            tickColor: "rgba(51, 51, 51, 0.06)",
+                            },
+                            tooltip: false
+                            }
+                            
+                            if ($("#chart_plot_01").length){
+                            console.log('Plot1');
+                            
+                            $.plot( $("#chart_plot_01"), [ arr_data1 ],  chart_plot_01_settings );
+                            }
 
-		  
+		          })
 </script>
